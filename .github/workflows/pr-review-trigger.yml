@@ -1,0 +1,19 @@
+name: PR Review Trigger
+on:
+  pull_request:
+    types: [assigned]
+
+jobs:
+  Add-ETA-Availabilty-To-PR:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' && github.event.action == 'assigned'}}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Send assigning the PR to review comment
+        id: assigned-comment
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const script = require('')
+            const checkEta = script({g: github, c:context})
+  
